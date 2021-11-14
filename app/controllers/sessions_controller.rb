@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
     else
       redirect_to '/login', notice: 'Username atau password salah'
     end
+
   end
 
   def login
