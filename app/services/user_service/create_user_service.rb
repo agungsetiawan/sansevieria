@@ -1,4 +1,5 @@
 class UserService::CreateUserService
+ 
   attr_reader :username, :name, :email, :password, :password_confirmation, :bio
   def initialize(username, name, email, password, password_confirmation, bio)
     @username = username
@@ -16,6 +17,7 @@ class UserService::CreateUserService
     user = User.new(username: @username, name: @name, email: @email, password: @password, password_confirmation: @password_confirmation, bio: @bio)
     user.access_token = user.generate_token
     user.save
+    user
 
   end
 end
