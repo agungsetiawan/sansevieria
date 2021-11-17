@@ -1,4 +1,4 @@
-class UserService::DestroyUserService < ApplicationService
+class UserService::DestroyUserService
 
   def initialize(id)
     @id = id

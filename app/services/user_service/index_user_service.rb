@@ -1,4 +1,4 @@
-class UserService::IndexUserService < ApplicationService
+class UserService::IndexUserService
 
   def call
     User.all

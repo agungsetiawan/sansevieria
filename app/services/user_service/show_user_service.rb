@@ -1,5 +1,5 @@
-class UserService::ShowUserService < ApplicationService
-
+class UserService::ShowUserService 
+  
   def initialize(id)
     @id = id
   end

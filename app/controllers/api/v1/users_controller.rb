@@ -11,10 +11,10 @@ class Api::V1::UsersController < ApiController
 
   def create
     # Create User >> Registration endpoint
-    user = UserService::CreateUserService.new(params[:username], params[:name], params[:email], params[:password], params[:password_confirmation], params[:bio]).call
+    user = UserService::CreateUserService.new(params[:username], params[:name], params[:email], params[:password], params[:password_confirmation], params[:bio], params[:account_ids]).call
     render json: { user: user }
   rescue StandardError => e
-    render json: { error: e }, , status: 400
+    render json: { error: e }, status: 400
   end
 
   def show
@@ -35,7 +35,7 @@ class Api::V1::UsersController < ApiController
 
   def update
     #Update User
-    user = UserService::UpdateUserService.new(params[:id], params[:username], params[:name], params[:email], params[:password], params[:password_confirmation], params[:bio]).call
+    user = UserService::UpdateUserService.new(params[:id], params[:username], params[:name], params[:email], params[:password], params[:password_confirmation], params[:bio], params[:account_ids]).call
     render json: { user: user}
   rescue StandardError => e
     render json: { error: e }, status: 400
