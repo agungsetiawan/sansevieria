@@ -10,9 +10,40 @@ class Api::V1::UsersController < ApiController
   end
 
   def create
-    # Create User
+    # Create User >> Registration endpoint
     user = UserService::CreateUserService.new(params[:username], params[:name], params[:email], params[:password], params[:password_confirmation], params[:bio]).call
     render json: { user: user }
+  rescue StandardError => e
+    render json: { error: e }, , status: 400
+  end
+
+  def show
+    #Show User
+    user = UserService::ShowUserService.new(params[:id]).call
+    render json: {user: user}
+  rescue StandardError => e
+    render json: { error: e }
+  end
+
+  # def edit 
+  #   #Edit User
+  #   user = UserService::ShowUserService.new(params[:id]).call
+  #   render json: {user: user}
+  # rescue StandardError => e
+  #   render json: { error: e }
+  # end
+
+  def update
+    #Update User
+    user = UserService::UpdateUserService.new(params[:id], params[:username], params[:name], params[:email], params[:password], params[:password_confirmation], params[:bio]).call
+    render json: { user: user}
+  rescue StandardError => e
+    render json: { error: e }, status: 400
+  end
+
+  def destroy
+    user = UserService::DestroyUserService.new(params[:id]).call
+    render json: {message: "User already deleted"}
   rescue StandardError => e
     render json: { error: e }
   end
