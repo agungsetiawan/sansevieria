@@ -4,10 +4,12 @@ class Api::V1::UsersController < ApiController
   def index
     # Index User
     users = UserService::IndexUserService.new.call
-    render json: { users: users }
+    render json: { users: users.as_json(only: [:username, :name, :email]) }
   rescue StandardError => e
     render json: { error: e }
   end
+
+  
 
   def create
     # Create User >> Registration endpoint
